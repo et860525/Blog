@@ -10,7 +10,6 @@
 html
 ,body {
     margin: 0;
-    transition: 0.3s;
     background-color: var(--main-backgorund-color);
     color: var(--main-text-color);
 }
