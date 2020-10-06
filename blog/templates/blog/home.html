@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}My Blog{% endblock %}
+
+{% load static %}
+
+{% block context %}
+
+<nav class="hero-nav">
+    <div class="nav-content min-container">
+        <h1 class="hero-title">Mango Blog</h1>
+        <ul>
+            <li><a href="{% url 'posts' %}">Posts</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="home-hero"></div>
+
+<section class="web-intro min-container main-bg">
+    <h2>This Is My Personal Website</h2>
+    <p>This is my blog</p>
+    <p>Note about everything I knew.</p>
+    <img src="{% static 'img/me.jpg' %}" alt="">
+</section>
+
+<section class="min-container seconed-bg">
+
+</section>
+
+{% endblock %}
