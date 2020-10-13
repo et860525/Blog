@@ -2,6 +2,13 @@
 
 {% block title %}My Post{% endblock %}
 
-{% block context %}
-<h1>Post</h1>
+{% block content %}
+<div class="min-container">
+    <h1>{{ post.headline }}</h1>
+    <h4 class="post-intro">{{ post.sub_headline }}</h4>
+    <h6 style="color: #29648A;">Published on <strong style="color: #2E9CCA;">{{ post.created|date:'M d Y' }}</strong></h6>
+    <img src="{{ post.thumbnail.url }}" alt="">
+    <hr>
+    <p>{{ post.body|safe }}</p>
+</div>
 {% endblock %}

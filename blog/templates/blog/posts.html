@@ -2,6 +2,27 @@
 
 {% block title %}My Posts{% endblock %}
 
-{% block context %}
-<h1>Posts</h1>
+{% block content %}
+<div class="min-container">
+    <div class="posts-nav">
+        <h1>Posts</h1>
+        {% if request.user.is_authenticated %}
+        <h4 style="margin: auto 0;"><a href="">Create Post</a></h4>
+        {% endif %}
+        
+    </div>
+    
+    <div class="posts-wrapper">
+        {% for post in posts %}
+        <div class="post">
+            <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="">
+            <h5>{{ post.headline }}</h5>
+            
+            
+            <a href="{% url 'post' post.slug %}">Read more...</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
