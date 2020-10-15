@@ -43,7 +43,7 @@ a { color: var(--main-text-color) }
 /*HERO-NAV*/
 .hero-nav {
     color: white;
-    height: 90px;
+    
     font-family: monospace;
 }
 
