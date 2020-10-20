@@ -1,10 +1,12 @@
 <nav class="hero-nav">
     <div class="nav-content min-container">
-        <h2 class="hero-title"><a href="{% url 'home' %}">Mango Blog</a></h2>
+        <h3 class="hero-title"><a href="{% url 'home' %}">Blog</a></h3>
         <ul>
-            <li><a href="{% url 'posts' %}">Posts</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="logout"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li class="login"><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>

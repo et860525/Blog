@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+
 from .filter import PostsFilter
 from .models import Post, Tag
 from .forms import *
 
 # Create your views here.
-def home(request):
-    posts = Post.objects.filter(activate=True, featured=True)[:3]
-
-    context = {'posts': posts}
-    return render(request, 'blog/home.html', context)
+#def home(request):
+#    posts = Post.objects.filter(activate=True, featured=True)[:3]
+#
+#    context = {'posts': posts}
+#    return render(request, 'blog/home.html', context)
 
 def posts(request):
     posts = Post.objects.filter(activate=True).order_by('-created')
@@ -41,6 +44,28 @@ def about(request):
 
 def contact(request):
     return render(request, 'blog/contact.html', {})
+
+# Login
+def loginView(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Username or Password is incorrect')
+
+    return render(request, 'blog/login.html', {})
+
+# Logout
+def logoutView(request):
+    logout(request)
+    return redirect('login')
+
 
 # CRUD
 

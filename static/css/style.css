@@ -21,10 +21,6 @@ ul, li { list-style: none; }
 a { color: var(--main-text-color) }
 
 /*COMMON SETTING*/
-.title-color {
-    color: var(--title-color)
-}
-
 .min-container {
     width: 1200px;
     margin: 0 auto;
@@ -43,8 +39,9 @@ a { color: var(--main-text-color) }
 }
 
 
-/*HERO-NAV*/
+/*NAVBAR.html*/
 .hero-nav {
+    background-color: #34366b;
     color: white;
     height: auto;
     border-bottom: 1px black solid;
@@ -56,7 +53,7 @@ a { color: var(--main-text-color) }
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 0px;
 }
 
 .hero-title {
@@ -76,15 +73,35 @@ a { color: var(--main-text-color) }
     padding: 0;
 }
 
-.hero-nav ul li {
+.logout,
+.login {
     display: inline-block;
     margin: 0 15px;
-    font-size: 25px;
-    
+    font-size: 18px;
     line-height: 54px;
 }
 
-/*HERO*/
+.logout a,
+.login a {
+    background-color: var(--second-title-color);
+    border: 1px black solid;
+    border-radius: 20px;
+    padding: 3px 8px;
+}
+
+.logout a:hover,
+.login a:hover {
+    background-color: var(--title-color);
+    text-decoration: none;
+    color: #fff;
+}
+
+/*LOGIN.html*/
+.login-wrapper {
+    padding: 50px;
+}
+
+/*HERO
 .home-hero {
     height: 90vh;
     max-width: 100%;
@@ -95,7 +112,7 @@ a { color: var(--main-text-color) }
     background-color: black;
 }
 
-/*WEB-INTRO*/
+/*WEB-INTRO
 .web-intro {
     margin: auto;
     margin-bottom: 20px;
@@ -103,7 +120,7 @@ a { color: var(--main-text-color) }
     text-align: center;
 }
 
-/*FEATURED*/
+/*FEATURED
 .featured-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, 320px);
@@ -111,10 +128,6 @@ a { color: var(--main-text-color) }
     justify-content: center;
     
     padding: 30px 0;
-}
-
-.featured-post {
- 
 }
 
 .featured-post img {
@@ -126,10 +139,10 @@ a { color: var(--main-text-color) }
 
 .post-preview {
     padding: 10px;
-}
+}*/
 
 
-/*POSTS*/
+/*POSTS.html*/
 .page-title {
     color: var(--title-color);
     font-size: 3rem;
@@ -143,7 +156,7 @@ a { color: var(--main-text-color) }
 .thumbnail {
     display: block;
     width: 100%;
-    height: 300px;
+    height: 350px;
     object-fit: cover;
 }
 
@@ -173,7 +186,7 @@ a { color: var(--main-text-color) }
     border-bottom: 1px black solid;
     border-bottom-left-radius: .25rem;
     border-bottom-right-radius: .25rem;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .mango-card {
