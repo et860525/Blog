@@ -8,7 +8,6 @@ class PostForm(ModelForm):
         model = Post
         exclude = ('modified',)
     
-
 class ContactForm(ModelForm):
     name = forms.CharField(max_length=225)
     email = forms.EmailField()

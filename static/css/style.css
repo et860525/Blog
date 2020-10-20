@@ -1,10 +1,12 @@
 :root {
     --main-backgorund-color: #25274D;
-    --second-backgorund-color: #464866;
+    --second-backgorund-color: #3f4269;
 
     --title-color: #2E9CCA;
+    --second-title-color: #29648A;
 
     --main-text-color: #fff;
+    --second-text-color: #AAABB8;
 }
 
 html
@@ -96,31 +98,46 @@ a { color: var(--main-text-color) }
 /*WEB-INTRO*/
 .web-intro {
     margin: auto;
+    margin-bottom: 20px;
     min-width: 1200px;
     text-align: center;
 }
 
-/*POSTS*/
-.posts-nav{
-    display: flex;
-    font-size: 20px;
-    margin: auto 0;
-    justify-content: space-between;
-    background-color: var(--second-color);
-    padding: 12px 10px;
+/*FEATURED*/
+.featured-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 320px);
+    gap: 20px;
+    justify-content: center;
+    
+    padding: 30px 0;
 }
 
-.posts-wrapper {
+.featured-post {
+ 
+}
+
+.featured-post img {
     display: block;
-    width: 600px;
-    height: 500px;
-    margin: 0 auto;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post-preview {
+    padding: 10px;
+}
+
+
+/*POSTS*/
+.page-title {
+    color: var(--title-color);
+    font-size: 3rem;
 }
 
 .post {
-    margin-bottom: 30px;
-    border: 2px black solid;
-    border-radius: 5px;
+    /*margin-bottom: 30px;*/
+    border: 1px black solid;    
 }
 
 .thumbnail {
@@ -130,29 +147,42 @@ a { color: var(--main-text-color) }
     object-fit: cover;
 }
 
-.post-text {
-    padding: 0 5px;
-}
-
-.headline {
-    color: var(--title-color);
-    margin: 10px 0;
-}
-
-.tag {
-	display: inline-block;
-	color:#fff;
-    background-color: var(--second-text-color);
-    border: 1px black solid;
-	border-radius: 5px;
-    margin: 5px;
-    margin-bottom: 8px;
-	padding: 2px 5px;
-	font-size: 15px;	
+.post-content {
+    padding: 10px;
 }
 
 .post-headline {
     color: var(--title-color);
+}
+
+.post-tag {
+	display: inline-block;
+	color: #fff;
+    background-color: var(--title-color);
+    border: 1px black solid;
+	border-radius: 5px;
+	padding: 2px 7px;
+	font-size: 15px;	
+}
+
+.post-date {
+    color: var(--second-text-color);
+    padding: 10px;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    margin-bottom: 40px;
+}
+
+.mango-card {
+    border: 1px solid black;
+    background-color: var(--second-backgorund-color);
+}
+
+.mango-pagination {
+    font-size: 1.5rem;
 }
 
 

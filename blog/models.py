@@ -18,7 +18,7 @@ class Post(models.Model):
     thumbnail = models.ImageField(null=True, blank=True, upload_to="images", default="placeholder.png")
     body     = RichTextUploadingField(null=True, blank=True)
     created  = models.DateTimeField(editable=False)
-    modified = models.DateTimeField(default=timezone.now())
+    modified = models.DateTimeField(auto_now_add=True)
     activate = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
     tags     = models.ManyToManyField(Tag, null=True, blank=True)
