@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group, Permission, User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+
 
 from .filter import PostsFilter
 from .models import Post, Tag
@@ -45,8 +49,8 @@ def about(request):
 def contact(request):
     return render(request, 'blog/contact.html', {})
 
-# Login
-def loginView(request):
+# Sign in
+def signInView(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -59,16 +63,32 @@ def loginView(request):
         else:
             messages.info(request, 'Username or Password is incorrect')
 
-    return render(request, 'blog/login.html', {})
+    return render(request, 'blog/signIn.html', {})
 
-# Logout
-def logoutView(request):
+# Sign out
+def signOutView(request):
     logout(request)
-    return redirect('login')
+    return redirect('signIn')
+
+# Register
+def registerView(request):
+    form = RegisterForm()
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = User.objects.get(username=form.cleaned_data['username'])
+            group = Group.objects.get(name='Users')
+            user.groups.add(group)
+            return redirect('signIn')
+
+    context = {'form': form}
+    return render(request, 'blog/register.html', context)
 
 
 # CRUD
-
+@login_required(login_url='home')
 def create_post(request):
     form = PostForm()
 
@@ -76,25 +96,32 @@ def create_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        return redirect('posts')
+        return redirect('home')
 
     context = {'form': form}
     return render(request, 'blog/form_post.html', context)
 
+@login_required(login_url='home')
 def update_post(request, slug):
     post = Post.objects.get(slug=slug)
     form = PostForm(instance=post)
 
     if request.method == "POST":
-        pass
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
 
     context = {'form': form}
     return render(request, 'blog/form_post.html', context)
 
+@login_required(login_url='home')
 def delete_post(request, slug):
     post = Post.objects.get(slug=slug)
 
     if request.method == "POST":
-        pass
+        post.delete()
+        return redirect('home')
 
-    return render(request, 'blog/.html', context)
+    context = {'post': post}
+    return render(request, 'blog/delete_post.html', context)

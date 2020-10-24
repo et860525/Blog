@@ -8,6 +8,7 @@
 
 <form action="" method="POST" style="margin: 0 30px;">
 {% csrf_token %}   
+
 {{ form.media }}
 {{ form|crispy }}
 

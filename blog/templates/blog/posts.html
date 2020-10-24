@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}My Posts{% endblock %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 {% include 'blog/navbar.html' %}
@@ -21,7 +21,13 @@
                         <span class="post-tag">{{tag}}</span>
                         {% endfor %}
                     </div>
-                    <a href="{% url 'post' post.slug %}" class="btn btn-primary post-btn">Read More...</a>
+                    <div class="btn-wrapper">
+                        <a href="{% url 'post' post.slug %}" class="btn btn-primary post-btn">Read More...</a>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'update_post' post.slug %}" class="btn btn-warning post-btn">Edit</a>
+                        <a href="{% url 'delete_post' post.slug %}" class="btn btn-danger post-btn">Delete</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <p class="post-date">Posted on {{ post.created|date:'M d Y' }} by <span style="color: #2E9CCA;">{{ post.sub_headline }}</span></p>
@@ -30,17 +36,17 @@
             <div class="pagination">
                 <span class="step-links mango-pagination" style="margin: auto;">
                     {% if posts.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ posts.previous_page_number }}">previous</a>
+                        <!--<a href="?page=1">&laquo; first</a>-->
+                        <a href="?page={{ posts.previous_page_number }}" class="btn btn-outline-secondary btn-color" role="button">previous</a>
                     {% endif %}
             
                     <span class="current">
-                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                        {{ posts.number }} of {{ posts.paginator.num_pages }}
                     </span>
             
                     {% if posts.has_next %}
-                        <a href="?page={{ posts.next_page_number }}">next</a>
-                        <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ posts.next_page_number }}" class="btn btn-outline-secondary btn-color" role="button">next</a>
+                        <!--<a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>-->
                     {% endif %}
                 </span>
             </div>     
@@ -50,12 +56,10 @@
             <div class="card mango-card mb-5">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
-                    <form action="" method="GET">
-                        <div class="input-group">
-                            {{post_filter.form}}
-                            <!--<input type="text" class="form-control" name="searchInput" id="searchInput" placeholder="Search for...">-->
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
+                    <form action="" method="GET" style="padding: 5px;">
+                        {{post_filter.form|crispy}}
+                        <!--<input type="text" class="form-control" name="searchInput" id="searchInput" placeholder="Search for...">-->                        
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                 </div>
             </div>

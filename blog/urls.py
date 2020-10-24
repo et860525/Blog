@@ -9,9 +9,12 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
 
-    # Login and Logout
-    path('login/', views.loginView, name='login'),
-    path('logout/', views.logoutView, name='logout'),
+    # Sign in and Sign out
+    path('signin/', views.signInView, name='signIn'),
+    path('signout/', views.signOutView, name='signOut'),
+
+    # register
+    path('register/', views.registerView, name='register'),
 
     # CRUD
     path('create_post/', views.create_post, name='create_post'),
