@@ -29,13 +29,8 @@ class RegisterForm(UserCreationForm):
         label="Password Check",
         widget=forms.PasswordInput()
     )
-    
 
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', )
 
-class ContactForm(ModelForm):
-    name = forms.CharField(max_length=225)
-    email = forms.EmailField()
-    body = forms.Textarea()

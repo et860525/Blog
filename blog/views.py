@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group, Permission, User
+from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
@@ -26,13 +26,16 @@ def posts(request):
     #    search_result = request.GET['searchInput']
     #    posts = posts.filter(headline__icontains=search_result)
 
+    # Filter
     post_filter = PostsFilter(request.GET, queryset=posts)
     posts = post_filter.qs
 
+    # Paginator
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+ 
 
     context = {'posts': page_obj, 'post_filter': post_filter}
     return render(request, 'blog/posts.html', context)

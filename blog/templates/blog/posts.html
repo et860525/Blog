@@ -11,6 +11,7 @@
         <div class="col-md-8">
             <h1 class="page-title my-4">Posts</h1>
             {% for post in posts %}
+            <!--Posts-->
             <div class="post">
                 <img src="{{post.thumbnail.url}}" class="thumbnail" alt="">
                 <div class="p-3">
@@ -33,6 +34,7 @@
             <p class="post-date">Posted on {{ post.created|date:'M d Y' }} by <span style="color: #2E9CCA;">{{ post.sub_headline }}</span></p>
             
             {% endfor %}       
+            <!--Pagination-->
             <div class="pagination">
                 <span class="step-links mango-pagination" style="margin: auto;">
                     {% if posts.has_previous %}
@@ -51,7 +53,21 @@
                 </span>
             </div>     
         </div>
+        <!--Card-->
         <div class="col-md-4 mt-5">
+            {% if request.user.is_authenticated %}
+            <div class="card mango-card mb-5">
+                <h5 class="card-header">Profile</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p>Hi <span style="color: #2E9CCA;">{{request.user.username}}</span></p>
+                            <a href="{% url 'create_post' %}" class="btn btn-primary">Create Post</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
 
             <div class="card mango-card mb-5">
                 <h5 class="card-header">Search</h5>
@@ -64,27 +80,7 @@
                 </div>
             </div>
 
-            <div class="card mango-card mb-5">
-                <h5 class="card-header">Tag</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="">Python</a></li>
-                                <li><a href="">Django</a></li>
-                                <li><a href="">Poem</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="">HTML</a></li>
-                                <li><a href="">CSS</a></li>
-                                <li><a href="">JavaScripts</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

@@ -4,8 +4,7 @@
 {% block title %}Create Post{% endblock %}
 
 {% block content %}
-
-
+{% include 'blog/navbar.html' %}
 <form action="" method="POST" style="margin: 0 30px;">
 {% csrf_token %}   
 
